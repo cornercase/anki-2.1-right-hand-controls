@@ -1,5 +1,5 @@
 # Eamon Doyle
-# Initial Commit - May 6 2019
+# Initial Commit - January 13th, 2018
 
 from anki.hooks import wrap
 from aqt.reviewer import Reviewer
@@ -10,6 +10,7 @@ def newShortcutKeys(self, _old):
         ("k", lambda: self._answerCard(2)),
         ("l", lambda: self._answerCard(3)),
         (";", lambda: self._answerCard(4)),
+        ("x", lambda: self.onSuspendCard()),
     ]
 
 def newAnswerCard(self, ease, _old):
