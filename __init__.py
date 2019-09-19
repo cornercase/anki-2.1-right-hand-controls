@@ -1,7 +1,8 @@
 # Eamon Doyle
 # Initial Commit - January 13th, 2018
 
-from anki.hooks import wrap
+from anki.hooks import wrap, addHook
+from aqt import mw
 from aqt.reviewer import Reviewer
 
 def newShortcutKeys(self, _old):
@@ -19,5 +20,13 @@ def newAnswerCard(self, ease, _old):
     else: 
         _old(self, min(self.mw.col.sched.answerButtons(self.card), ease))
 
+def refocusInterface():
+    mw.web.setFocus()
+
+        
 Reviewer._shortcutKeys = wrap(Reviewer._shortcutKeys, newShortcutKeys, "around")
 Reviewer._answerCard = wrap(Reviewer._answerCard, newAnswerCard, "around")
+
+
+addHook("showQuestion", refocusInterface)
+addHook("showAnswer", refocusInterface)
